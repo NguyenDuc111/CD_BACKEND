@@ -1,9 +1,27 @@
 <div class="content">
   <div class="container-fluid">
-    <div class="flex items-center justify-content-between mb-5">
+    <div class="flex items-center justify-content-between">
       <h4 class="page-title mb-0">Danh sách loại sản phẩm</h4>
-      <a class="btn btn-default" href="/categories/create">Tạo loại sản phẩm</a>
+      <a class="btn btn-success buttonIcon" href="/categories/create"><i class="la la-plus"></i></a>
+      
     </div>
+    <div class="flex justify-content-start">
+      <div class="flex full-width items-center mt-4">
+        <label for="defaultSelect" class="white-space mr-1">Xắp xếp</label>
+        <select class="max-w-20 mb-4px search-input" id="defaultSelect" onchange="changeSort(event)">
+          <% sortObjects.forEach(function(sortObject, index){ %>
+            <%if(sortObject.code === sort){%>
+              <option value="<%=sortObject.code%>" selected ><%=sortObject.name%></option>
+            <%}%>
+            <%if(sortObject.code !== sort){%>
+              <option value="<%=sortObject.code%>"><%=sortObject.name%></option>
+            <%}%>
+         
+          <%})%>
+        </select>
+      </div>
+    </div>
+
     <% if (categories && categories.length > 0) { %>
     <div class="card">
       <div class="card-body">
@@ -17,7 +35,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="listCategory">
             <% categories.forEach(function(category, index){ %>
             <tr>
               <td><%=index+1%></td>
@@ -30,16 +48,18 @@
               </td>
               <td><%=category.code%></td>
               <td><%=category.name%></td>
-              <td>
+              <td class="flex gap-4">
                 <a
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-primary buttonIcon"
                   href="/categories/update/<%=category._id%>"
-                  >Sửa</a
+                  ><i class="la la-pencil-square"></i>
+                  </a
                 >
                 <a
-                  class="btn btn-danger btn-sm"
+                  class="btn btn-danger btn-sm buttonIcon"
                   href="/categories/delete/<%=category._id%>"
-                  >Xoá</a
+                  >
+                  <i class="la la-trash"></i></a
                 >
               </td>
             </tr>
@@ -47,36 +67,42 @@
           </tbody>
         </table>
       </div>
-      <div class="card-body flex justify-content-center items-center">
-        <div class="form-group flex justify-content-center items-center">
-          <label for="defaultSelect" class="white-space">Page Size</label>
-          <select class="form-control form-control" id="defaultSelect" onchange="changePageSize(event)">
+      <div class="card-body flex justify-content-center items-center gap-4">
+        <div class="form-group flex justify-content-center items-center p-0 mr-1">
+          <label for="defaultSelect" class="white-space mb-0 mr-1">Page Size</label>
+          <select
+            class="form-control form-control"
+            id="defaultSelect"
+            onchange="changePageSize(event)"
+          >
             <% [5, 10, 20, 30, 50].forEach(function(pageSizeOption, index){ %>
-              <%if(pageSizeOption === pageSize){ %>
-                <option selected><%=pageSizeOption%></option>
-              <%}%>
-              <%if(pageSizeOption !== pageSize){ %>
-                <option><%=pageSizeOption%></option>
-              <%}%>
-              <% }); %>
-     
+            <%if(pageSizeOption === pageSize){ %>
+            <option selected><%=pageSizeOption%></option>
+            <%}%> <%if(pageSizeOption !== pageSize){ %>
+            <option><%=pageSizeOption%></option>
+            <%}%> <% }); %>
           </select>
         </div>
-        <ul class="pagination pg-primary">
+        <ul class="pagination pg-primary mb-0">
           <li class="page-item">
             <a class="page-link" aria-label="Previous" onclick="prevPage()">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
             </a>
           </li>
-          <% for(let i = 1; i <= countPagination; i++){ %>
-            <%if(page === i){ %>
-              <li class="page-item active"><a class="page-link" href="#" onclick="changePage(`<%=i%>`)"><%=i%></a></li>
-            <%}%>
-            <%if(page !== i){ %>
-              <li class="page-item"><a class="page-link" href="#" onclick="changePage(`<%=i%>`)"><%=i%></a></li>
-            <%}%>
-          <% }; %>
+          <% for(let i = 1; i <= countPagination; i++){ %> <%if(page === i){ %>
+          <li class="page-item active">
+            <a class="page-link" href="#" onclick="changePage(`<%=i%>`)"
+              ><%=i%></a
+            >
+          </li>
+          <%}%> <%if(page !== i){ %>
+          <li class="page-item">
+            <a class="page-link" href="#" onclick="changePage(`<%=i%>`)"
+              ><%=i%></a
+            >
+          </li>
+          <%}%> <% }; %>
           <li class="page-item">
             <a class="page-link" aria-label="Next" onclick="nextPage()">
               <span aria-hidden="true">&raquo;</span>
@@ -84,7 +110,6 @@
             </a>
           </li>
         </ul>
-
       </div>
     </div>
     <% } else { %>

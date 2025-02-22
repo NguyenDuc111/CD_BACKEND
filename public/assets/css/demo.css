@@ -114,9 +114,94 @@
 .mb-5{
 	margin-bottom: 5rem
 }
+.mb-1{
+	margin-bottom: 1rem
+}
+.mb-4px{
+	margin-bottom: 0.5rem
+}
+.mr-1{
+	margin-right: 1rem;
+}
 .hide{
 	display: none
 }
 .white-space{
 	white-space: nowrap;
+}
+.max-w-20{
+	max-width: 20rem;
+}
+.m-0{
+	margin: 0;
+}
+.p-0{
+	padding: 0;
+}
+.mb-0{
+	margin-bottom: 0!important;
+}
+.w-2{
+	width: 2rem;
+}
+.product-checkbox-label{
+	width: 32px;
+	height: 16px;
+	border-radius: 4px;
+	border: 1px solid #000;
+}
+.bg-red{
+	background-color: #ff0000
+}
+.bg-green{
+	background-color: #00ff88
+}
+.bg-yellow{
+	background-color: #d9ff00
+}
+.bg-white{
+	background-color: #ffffff
+}
+.bg-black{
+	background-color: #000000
+}
+.gap-2{
+	gap: 2rem
+}
+input{
+	height:38px
+}
+
+.itemButton{
+	height: 38px;
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input{
+	height:20px
+}
+.rounded-table{
+	border-radius:6px
+}
+
+table {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px
+}
+
+.gap-4{
+	gap: 16px;
+}
+
+.buttonIcon{
+	height: 44px;
+    width: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	padding: 0;
+	font-size: 24px;
 }

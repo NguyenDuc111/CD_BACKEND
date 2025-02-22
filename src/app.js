@@ -4,7 +4,6 @@ import routers from "./routers/index.js"
 import mongoConnect from './mongo/mongoConnecter.js';
 import bodyParser from 'body-parser';
 
-
 const app = express();
 const port = 5001
 const __dirname = path.resolve()
